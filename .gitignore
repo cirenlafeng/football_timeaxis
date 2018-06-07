@@ -1,0 +1,4 @@
+.idea/*
+.svn/*
+db.php
+.DS_Store
