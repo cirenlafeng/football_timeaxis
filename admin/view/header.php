@@ -34,23 +34,23 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo ROOT_URL;?>">新闻后台</a>
+            <a class="navbar-brand" href="<?php echo ROOT_URL;?>">采集后台</a>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                <li <?php checkActive('index'); ?>>
-                  <a href="<?php echo ROOT_URL;?>">首页</a>
+                  <a href="<?php echo ROOT_URL;?>">Home</a>
               </li>
              
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理员<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Master<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">设置</a></li>
+                  <!-- <li><a href="#">设置</a></li> -->
                   <li class="divider"></li>
-                  <li><a href="<?php echo ROOT_URL.'?a=out';?>">退出登录</a></li>
+                  <li><a href="<?php echo ROOT_URL.'?a=out';?>">Login out</a></li>
                 </ul>
               </li>
             </ul>

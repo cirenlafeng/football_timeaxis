@@ -4,7 +4,7 @@
  * Author: Sean.Cai
  * Date: 20170310
  */
-
+date_default_timezone_set('Africa/Cairo');
 //分页类
 class Page{
     protected $count;       //总条数
@@ -69,11 +69,11 @@ class Page{
         $pageStr.='当前第'.$this->currPage.'/'.$this->countPages.'页 ';
  
         $_GET['page'] = 1;
-        $pageStr.='<span>[<a href="'.$this->href.'?'.http_build_query($_GET).'">首页</a>] </span>';
+        $pageStr.='<span>[<a href="'.$this->href.'?'.http_build_query($_GET).'">First</a>] </span>';
         //如果当前页不是第一页就显示上页
         if($this->currPage>1){
             $_GET['page'] = $this->currPage-1;
-            $pageStr.='<span>[<a href="'.$this->href.'?'.http_build_query($_GET).'">上页</a>] </span>';
+            $pageStr.='<span>[<a href="'.$this->href.'?'.http_build_query($_GET).'">Last</a>] </span>';
         }
  
         foreach ($this->page_arr as $k => $v) {
@@ -84,11 +84,11 @@ class Page{
         //如果当前页小于总页数就显示下一页
         if($this->currPage<$this->countPages){
             $_GET['page'] = $this->currPage+1;
-            $pageStr.='<span>[<a href="'.$this->href.'?'.http_build_query($_GET).'">下页</a>] </span>';
+            $pageStr.='<span>[<a href="'.$this->href.'?'.http_build_query($_GET).'">Next</a>] </span>';
         }
  
         $_GET['page'] = $this->countPages;
-        $pageStr.='<span>[<a href="'.$this->href.'?'.http_build_query($_GET).'">尾页</a>] </span>';
+        $pageStr.='<span>[<a href="'.$this->href.'?'.http_build_query($_GET).'">End</a>] </span>';
  
         return $pageStr;
     }
@@ -97,11 +97,11 @@ class Page{
         $pageStr='<div class="pagination-container"><ul class="pagination"><li>&nbsp;<span>共'.$this->count.'条记录，每页显示'.$this->subPages.'条';
         $pageStr.='当前第'.$this->currPage.'/'.$this->countPages.'页</span></li>';
         $_GET['page'] = 1;
-        $pageStr.='<li><a href="'.$this->href.'?'.http_build_query($_GET).'">首页</a></li>';
+        $pageStr.='<li><a href="'.$this->href.'?'.http_build_query($_GET).'">First</a></li>';
         //如果当前页不是第一页就显示上页
         if($this->currPage>1){
             $_GET['page'] = $this->currPage-1;
-            $pageStr.='<li><a href="'.$this->href.'?'.http_build_query($_GET).'">上页</a></li>';
+            $pageStr.='<li><a href="'.$this->href.'?'.http_build_query($_GET).'">Last</a></li>';
         }
  
         foreach ($this->page_arr as $k => $v) {
@@ -117,11 +117,11 @@ class Page{
         //如果当前页小于总页数就显示下一页
         if($this->currPage<$this->countPages){
             $_GET['page'] = $this->currPage+1;
-            $pageStr.='<li><a href="'.$this->href.'?'.http_build_query($_GET).'">下页</a></li>';
+            $pageStr.='<li><a href="'.$this->href.'?'.http_build_query($_GET).'">Next</a></li>';
         }
  
         $_GET['page'] = $this->countPages;
-        $pageStr.='<li><a href="'.$this->href.'?'.http_build_query($_GET).'">尾页</a></li>';
+        $pageStr.='<li><a href="'.$this->href.'?'.http_build_query($_GET).'">End</a></li>';
         $pageStr.='</ul></div>';
         return $pageStr;
     }

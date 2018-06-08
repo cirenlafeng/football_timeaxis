@@ -1,6 +1,6 @@
 <?php 
 defined('HOST_PATH') or exit("contorl path error");
-
+date_default_timezone_set('Africa/Cairo');
 /*
 *  改名规则
 *  1、example 改为 域名，域名中的 ”.“ ”-“ 符号都替换成 ”_“

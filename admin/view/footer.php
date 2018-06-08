@@ -2,7 +2,7 @@
              <div class="row">
                 <hr>
                 <footer role="contentinfo">
-                    <p><a href="#">返回顶部</a></p>
+                    <p><a href="#">Return Top</a></p>
                 </footer>
             </div>
         </div>

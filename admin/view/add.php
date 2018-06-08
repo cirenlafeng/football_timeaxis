@@ -9,48 +9,53 @@
     <div class="row">
         <div class="panel panel-default bootstrap-admin-no-table-panel">
             <div class="panel-heading">
-                <div class="text-muted bootstrap-admin-box-title">添加比赛</div>
+                <div class="text-muted bootstrap-admin-box-title">Add competition</div>
             </div>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
                 <form class="form-horizontal" action="<?php echo ROOT_URL.'?a=add'?>" method="post">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" >直播端ID</label>
+                            <label class="col-lg-3 control-label" >Competition ID</label>
                             <div class="col-lg-6">
                                 <input name="id" class="form-control" type="text" value="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">主球队名</label>
+                            <label class="col-lg-3 control-label">Main team name</label>
                             <div class="col-lg-6">
                                 <input name="team_first" class="form-control" type="text" value="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">客球队名</label>
+                            <label class="col-lg-3 control-label">Second team name</label>
                             <div class="col-lg-6">
                                 <input name="team_second" class="form-control"  type="text" value="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">将采集的URL</label>
+                            <label class="col-lg-3 control-label">Collection URL</label>
                             <div class="col-lg-6">
                                 <input name="url" class="form-control" type="text" value="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">开始采集时间</label>
+                            <label class="col-lg-3 control-label">Start collecting time</label>
                             <div class="col-lg-6">
                                 <input name="start_time" class="form-control " id="dateinfo" type="datetime"  readonly="" style="background-color: #fff;">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">结束采集时间</label>
+                            <label class="col-lg-3 control-label">End collecting time</label>
                             <div class="col-lg-6">
                                 <input name="end_time" class="form-control " id="dateinfo2" type="datetime"  readonly="" style="background-color: #fff;">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">提交</button>
+                        <br><br><br><br>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">
+                                <button type="submit" class="btn btn-primary">submit</button>
+                            </label>
+                        </div>
                     </fieldset>
                 </form>
             </div>
