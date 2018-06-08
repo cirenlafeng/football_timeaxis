@@ -67,6 +67,14 @@ class www_filgoal_com
 		if( strlen($articles) > 10 )
 		{
 			$content_times = strReplaceNT('<ul>'.$articles.'</ul>');
+			//下载内容图片
+	        $result = getContentImages($content_times, 'sada');
+	        if ($result['status'] == 1) {
+	            $content_times = $result['content'];
+	        }else{
+	            //图片下载失败
+	            echo "#Error : content images download error ..  ID = {$id}  ...".PHP_EOL;
+	        }
 		}else{
 			$content_times = '';
 		}
@@ -85,6 +93,14 @@ class www_filgoal_com
 				$battles = str_replace($cleanB, '', $battles);
 			}
 			$content_battle = strReplaceNT($battles);
+			//下载内容图片
+	        $result = getContentImages($content_battle, 'sada');
+	        if ($result['status'] == 1) {
+	            $content_battle = $result['content'];
+	        }else{
+	            //图片下载失败
+	            echo "#Error : content images download error ..  ID = {$id}  ...".PHP_EOL;
+	        }
 		}else{
 			$content_battle = '';
 		}
