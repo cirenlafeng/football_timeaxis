@@ -16,8 +16,9 @@ defined('RRC_GATHER_URL') or define('RRC_GATHER_URL', $sysConfig['RRC_GATHER_URL
  * @param $content
  * @return mixed
  */
-function getContentImages($content, $appName = 'test', $width = 640, $height = 640)
+function getContentImages($content, $appName = 'sada', $width = 50, $height = 50)
 {
+    $content = str_replace('//semedia.filgoal.com', 'https://semedia.filgoal.com', $content);
     global $statisticsInfo;
     //提取所有img html，和最新img url
     $replaceArr = array();
@@ -47,7 +48,7 @@ function getContentImages($content, $appName = 'test', $width = 640, $height = 6
         }else{
             $statisticsInfo['srcDownload']['Error'][] = $imgUrl;
         }
-        $temp['replace'] = '<img width="100%" src="'.$newImg.'" />';
+        $temp['replace'] = '<img src="'.$newImg.'" />';
         $replaceArr[] = $temp;
     }
     if ($getImgCount < $count){
@@ -71,7 +72,7 @@ function getContentImages($content, $appName = 'test', $width = 640, $height = 6
  * @param string $ext 图片新扩展名
  * @return mixed
  */
-function getSrcByImageCDN($srcURL, $appName = 'test', $width=0, $height=0, $ext='')
+function getSrcByImageCDN($srcURL, $appName = 'sada', $width=0, $height=0, $ext='')
 {
     $data = [
         'srcUrl'=>$srcURL,
