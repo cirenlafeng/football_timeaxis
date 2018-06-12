@@ -70,7 +70,7 @@ class www_filgoal_com
 			//下载内容图片
 	        $result = getContentImages($content_times, 'sada');
 	        if ($result['status'] == 1) {
-	            $content_times = removeATagByPregs($result['content']);
+	            $content_times = removeATagByPregs([] , $result['content']);
 	        }else{
 	            //图片下载失败
 	            echo "#Error : content images download error ..  ID = {$id}  ...".PHP_EOL;
@@ -96,7 +96,7 @@ class www_filgoal_com
 			//下载内容图片
 	        $result = getContentImages($content_battle, 'sada');
 	        if ($result['status'] == 1) {
-	            $content_battle = removeATagByPregs($result['content']);
+	            $content_battle = removeATagByPregs([] , $result['content']);
 	        }else{
 	            //图片下载失败
 	            echo "#Error : content images download error ..  ID = {$id}  ...".PHP_EOL;
