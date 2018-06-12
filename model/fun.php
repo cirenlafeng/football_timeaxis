@@ -67,42 +67,15 @@ function removeHtml($obj)
     return $obj;
 }
 
-function removeHtmlByPregs($patten = array(), $content, $patten3 = null)
+function removeATagByPregs($patten = array(), $content)
 {
     //常见规则
     $patten2 = array(
         '/<!--.*?-->/',
-        '/ width="[^"]*"| height="[^"]*"/i',
-        #过滤各种标签内属性
-        '/ id="[^"]*"| class="[^"]*"| alt="[^"]*"| srcset="[^"]*"| sizes="[^"]*"| style="[^"]*"| dir="[^"]*"| start="[^"]*"| itemprop="[^"]*"| align="[^"]*"| title="[^"]*"| rel="[^"]*"|/i',
-        '/ id=\'[^\']*\'| class=\'[^\']*\'| alt=\'[^\']*\'| srcset=\'[^\']*\'| sizes=\'[^\']*\'| style=\'[^\']*\'| dir=\'[^\']*\'| start=\'[^\']*\'| itemprop=\'[^\']*\'| align=\'[^\']*\'| title=\'[^\']*\'| width=\'[^\']*\'| height=\'[^\']*\'|/i',
-        '/ data-[^=]*="[^"]*"|/i',
         #去除各种标签
         '/<a([^>]*?)>/i',
         '/<\/a>/i',
-        '/<strong([^>]*?)>/i',
-        '/<\/strong>/i',
-        '/<b>/i',
-        '/<b ([^>]*?)>/i',
-        '/<\/b>/i',
-        '/<span([^>]*?)>/i',
-        '/<\/span>/i',
-        '/<center([^>]*?)>/i',
-        '/<\/center>/i',
-        '/<div([^>]*?)>/i',
-        '/<\/div>/i',
-        '/<figure([^>]*?)>/i',
-        '/<\/figure>/i',
-        '/<font([^>]*?)>/i',
-        '/<\/font>/i',
-        '/<abbr([^>]*?)>/i',
-        '/<\/abbr>/i',
-        '/<p> <\/p>/i',
-        '/<p><\/p>/i',
     );
-    if ($patten3) {
-        $patten2 = $patten3;
-    }
     foreach ($patten2 as $key => $value) {
         $patten[] = $value;
     }
@@ -111,11 +84,6 @@ function removeHtmlByPregs($patten = array(), $content, $patten3 = null)
         $content = removeHtmlByPreg($value, $content);
     }
     $content = trim($content);
-    $content = str_replace("<p>", "\n<p>", $content);
-    $patten = array("\n\n<p>");
-    for ($i=0; $i < 10; $i++) {
-        $content = str_replace($patten, "\n<p>", $content);
-    }
     return $content;
 }
 
