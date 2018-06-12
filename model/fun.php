@@ -75,6 +75,7 @@ function removeATagByPregs($patten = array(), $content)
         #去除各种标签
         '/<a([^>]*?)>/i',
         '/<\/a>/i',
+        '/<li><h3>.*?<\/h3><\/li>/i',
     );
     foreach ($patten2 as $key => $value) {
         $patten[] = $value;
