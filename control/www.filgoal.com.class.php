@@ -106,12 +106,16 @@ class www_filgoal_com
 		}
 
 		global $dbo;
-		try{
-			$dbo->exec("UPDATE `link_list` SET `content_times` = '{$content_times}' , `content_battle` = '{$content_battle}' WHERE `id` = {$id}");
-			echo '#SUCCESS  ID: '.$id.' have saved!'.PHP_EOL;
-		}catch (Exception $e)
+		$rowCheck = $dbo->exec("SELECT * FROM `link_list` WHERE `id` = {$id}");
+		if( $rowCheck && (strlen($rowCheck['content_times']) < strlen($content_times) || strlen($rowCheck['content_battle']) < strlen($content_battle)) )
 		{
-			echo '#####ERROR  ID: '.$id.' save error'.PHP_EOL;
+			try{
+				$dbo->exec("UPDATE `link_list` SET `content_times` = '{$content_times}' , `content_battle` = '{$content_battle}' WHERE `id` = {$id}");
+				echo '#SUCCESS  ID: '.$id.' have saved!'.PHP_EOL;
+			}catch (Exception $e)
+			{
+				echo '#####ERROR  ID: '.$id.' save error'.PHP_EOL;
+			}
 		}
 
 		phpQuery::unloadDocuments();
