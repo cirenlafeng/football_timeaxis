@@ -49,13 +49,13 @@ use Ares333\CurlMulti\Core;
 $stime = microtime(true);
 $curl = new Core();
 $curl->opt [CURLOPT_USERAGENT]      = getUserAgentInfo();
-$curl->opt [CURLOPT_HTTPHEADER]     = getUserIP();
+// $curl->opt [CURLOPT_HTTPHEADER]     = getUserIP();
 $curl->opt [CURLOPT_REFERER]        = getUserReferer();
 $curl->opt [CURLOPT_SSL_VERIFYPEER] = FALSE;//不验证SSL
 $curl->opt [CURLOPT_SSL_VERIFYHOST] = FALSE;//不验证SSL
 $curl->cbTask = array('work');
-$curl->maxThread = 10;//线程数
-$curl->maxTry = 2;//失败重试
+$curl->maxThread = 4;//线程数
+$curl->maxTry = 6;//失败重试
 $curl->start();
 $etime = microtime(true);
 echo "Finished in .. ". round($etime - $stime, 3) ." seconds\n";
