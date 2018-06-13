@@ -108,7 +108,7 @@ class www_filgoal_com
 		{
 			$content_times = '';
 		}
-		if($content_battle == '<div class=\"mfm_block basic\"><h1>التشكيل الأساسي</h1><ul></ul></div>')
+		if(strlen($content_battle) < 90)
 		{
 			$content_battle = '';
 		}
