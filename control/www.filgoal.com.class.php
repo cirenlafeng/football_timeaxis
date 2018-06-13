@@ -106,7 +106,7 @@ class www_filgoal_com
 		}
 
 		global $dbo;
-		$rowCheck = $dbo->exec("SELECT * FROM `link_list` WHERE `id` = {$id}");
+		$rowCheck = $dbo->loadAssoc("SELECT * FROM `link_list` WHERE `id` = {$id}");
 		if( $rowCheck && (strlen($rowCheck['content_times']) < strlen($content_times) || strlen($rowCheck['content_battle']) < strlen($content_battle)) )
 		{
 			try{
