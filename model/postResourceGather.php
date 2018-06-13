@@ -81,9 +81,9 @@ function getContentImages($content, $appName = 'sada', $width = 50, $height = 50
         $temp['replace'] = '<img src="'.$newImg.'" />';
         $replaceArr[] = $temp;
     }
-    if ($getImgCount < $count){
-        return array('status'=>0,'content'=>$content,'imgList'=>$replaceArr);
-    }
+    // if ($getImgCount < $count){
+    //     return array('status'=>0,'content'=>$content,'imgList'=>$replaceArr);
+    // }
 
     foreach ($replaceArr as $replace)
     {
