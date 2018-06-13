@@ -20,6 +20,7 @@ function getContentImages($content, $appName = 'sada', $width = 50, $height = 50
 {
     $content = str_replace('//semedia.filgoal.com', 'https://semedia.filgoal.com', $content);
     global $statisticsInfo;
+    global $dbo;
     //提取所有img html，和最新img url
     $replaceArr = array();
     preg_match_all('#<img.*?src="([^"]*)"[^>]*>#i', $content, $match);
@@ -28,23 +29,52 @@ function getContentImages($content, $appName = 'sada', $width = 50, $height = 50
     $getImgCount = 0;
     for ($i = 0; $i < $count; $i++)
     {
+
+        
         $temp = [];
         $temp['find'] = $match[0][$i];
         $imgUrl = $match[1][$i];
-        echo 'imgURL : '.$imgUrl.PHP_EOL;
-        #第一次尝试
-        $newImg = getSrcByImageCDN($imgUrl, $appName, $width, $height);
-        #失败二次重试
-        if ($imgUrl == $newImg){
+        
+        $source_sha1 = sha1($imgUrl);
+        $sql = "SELECT * FROM `img_list` where `source_sha1`='{$source_sha1}'";
+        $rowImg = $dbo->loadAssoc($sql);
+        if($rowImg)
+        {
+
+            $newImg = $rowImg['cdn_img'];
+            echo '在数据库找到了已记录的图片对应CDN地址 -- 源地址： '.$imgUrl.PHP_EOL;
+            $byCdn = 0;
+
+        }else{
+            #第一次尝试
             $newImg = getSrcByImageCDN($imgUrl, $appName, $width, $height);
+            #失败二次重试
+            if ($imgUrl == $newImg){
+                $newImg = getSrcByImageCDN($imgUrl, $appName, $width, $height);
+            }
+            #失败三次重试
+            if ($imgUrl == $newImg){
+                $newImg = getSrcByImageCDN($imgUrl, $appName, $width, $height);
+            }
+            $byCdn = 1;
         }
-        #失败三次重试
-        if ($imgUrl == $newImg){
-            $newImg = getSrcByImageCDN($imgUrl, $appName, $width, $height);
-        }
+
+
+        
         if ($imgUrl != $newImg){
             $getImgCount++;
             $statisticsInfo['srcDownload']['success']['count']++;
+            if($byCdn == 1)
+            {
+                try{
+                    $sqlex = "INSERT `img_list` VALUES('{$source_sha1}','{$imgUrl}','{$newImg}')";
+                    $dbo->exec($sqlex);
+                    echo '保存了CDN图片 -- 源地址： '.$imgUrl.PHP_EOL;
+                } catch (Exception $e) {
+                    echo '源地址： '.$imgUrl." 保存CDN失败 ".PHP_EOL;
+                }
+            }
+            
         }else{
             $statisticsInfo['srcDownload']['Error'][] = $imgUrl;
         }
