@@ -104,7 +104,14 @@ class www_filgoal_com
 		}else{
 			$content_battle = '';
 		}
-
+		if($content_times == '<ul></ul>')
+		{
+			$content_times = '';
+		}
+		if($content_battle == '<div class=\"mfm_block basic\"><h1>التشكيل الأساسي</h1><ul></ul></div>')
+		{
+			$content_battle = '';
+		}
 		global $dbo;
 		$rowCheck = $dbo->loadAssoc("SELECT * FROM `link_list` WHERE `id` = {$id}");
 		if( $rowCheck && (strlen($rowCheck['content_times']) < strlen($content_times) || strlen($rowCheck['content_battle']) < strlen($content_battle)) )
